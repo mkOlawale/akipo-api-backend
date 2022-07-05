@@ -119,8 +119,9 @@ class adminController extends Controller
         $this->validate($request, [
             'file' => 'required|mimes:jpeg,jpg,png',
         ]);
+        Auth::User()->where('id','tags_id', 'blog_id')->paginate(1);
        $picName = time().'.'.$request->file->extension();
-       $request->file->move(public_path('uploads'),  $picName);
+       $request->file->move(public_path('uploads'),  $picName);  
        return  $picName;
     }
         public function deleteImage(Request $request)
