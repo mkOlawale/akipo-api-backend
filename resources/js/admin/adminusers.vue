@@ -20,7 +20,7 @@
 								<!-- TABLE TITLE -->
 
 
-								<!-- ITEMS -->
+								<!-- ITEMS then we refractor -->
 							<tr v-for="(user, i) in users" :key="i">
 								<td>{{user.id}}</td>
 								<td class="_table_name">{{user.fullName}}</td>
@@ -29,8 +29,7 @@
 								<td>{{user.created_at}}</td>
 								<td>
 									<Button type="info" size="small" @click="showEditModal(user, i)">Edit</Button>
-									<Button type="error" size="small" @click="showDeletingModal(user, i)"  :loading="user.isDeleting">Delete</Button>
-									
+									<Button type="error" size="small" @click="showDeletingModal(user, i)"  :loading="user.isDeleting">Deleted</Button>
 								</td>
 							</tr>
 								<!-- ITEMS -->
@@ -147,7 +146,8 @@ export default {
 			deleteItem: {},
 			deleting: -1,
 			idDeleting: false,
-			Roles: []
+			Roles: [],
+			status: ['yarn serve Development', 'callApi is loading'],
         }
     },
    methods:{
@@ -163,6 +163,7 @@ export default {
 				this.s('Admin user has been added successfully!')
 				this.addModal = false
 				this.data.tagName = ''
+				console.log(this.res)
 			}else{
 				if(res.status==422){
                     for(let i in res.data.errors){
@@ -175,6 +176,7 @@ export default {
 			}
 
 		},
+		// honestly i don't know what is going on right here because of bug
 	   async editUser(){
 			 if(this.editdata.fullName.trim()=='') return this.e('Full name is required');
             if(this.editdata.email.trim()=='') return this.e('Email is required');
@@ -194,6 +196,7 @@ export default {
 				}
 		   }
 	   },
+	//    no res then we check the other response from the server
 	   showEditModal(user, index){
 		   let obj = {
 			 id: user.id,

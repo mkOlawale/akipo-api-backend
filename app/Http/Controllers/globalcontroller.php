@@ -46,7 +46,6 @@ class globalcontroller extends Controller
             'tagName' => $request->tagName,
         ]);
     }
-
     public function edittags(){
         $this->validate($request, [
             'tagName' => 'required',
@@ -104,6 +103,65 @@ class globalcontroller extends Controller
        $picName = time().'.'.$request->file->extension();
        $request->file->move(public_path('uploads'),  $picName);
        return  $picName;
+    }
+        public function addRole(Request $request)
+    {
+        // validate request
+        $this->validate($request, [
+            'roleName' => 'required',
+        ]);
+        return Role::create([
+            'roleName' => $request->roleName,
+        ]);
+    }
+    public function editRole(Request $request)
+    {
+        // validate request
+        $this->validate($request, [
+            'roleName' => 'required',
+        ]);
+        return Role::where('id', $request->id)->update([
+            'roleName' => $request->roleName,
+        ]);
+    }
+    // public function deletetags(Request $request){
+    //     // hey everyone this is where i will be deleting the tag
+    //     dd("to show the delete is working permanently");
+    //     Auth::check()->user();
+    //     return response()->json({
+    //         'msg': 'This is from deleting server',
+    //     });
+    // }
+    public function getRoles()
+    {
+        return Role::all();
+    }
+        public function assignRole(Request $request)
+    {
+        $this->validate($request, [
+            'permission' => 'required',
+            'id' => 'required',
+        ]);
+        return Role::where('id', $request->id)->update([
+            'permission' => $request->permission,
+        ]);
+    }
+    public function deleteRole(Request $request){
+        $this->validate($request, [
+            'id' => 'required',
+        ]);
+        return Role::where('id', $request->id)->delete();
+    }
+    public function slug(){
+        $title = 'This is a nice title';
+        return Blog::create([
+            'title' => $title,
+            'post' => 'some post',
+            'post_excerpt' => 'aead',
+            'user_id' => 1,
+            'metaDiscription' => 'aead',
+        ]);
+        return $title;
     }
         public function deleteImage(Request $request)
     {
@@ -207,6 +265,7 @@ class globalcontroller extends Controller
                     'success' => 1,
                     'file' => [
                         'url' => "http://stack.test/uploads/$picName",
+                        'msg' => 'You have succesfully enrolled'
                     ],
                 ]);
                return  $picName;
@@ -222,8 +281,11 @@ class globalcontroller extends Controller
             'jsonData' => 'required'
         ]);
         $categories = $request->category_id;
+
         $tags = $request->tags_id;
+
         $blogCategories = [];
+        
         $blogTags = [];
      
         // \Log::info($blogCategories);
@@ -274,9 +336,11 @@ class globalcontroller extends Controller
         $blogTags = [];
      
         // \Log::info($blogCategories);
+        // DB Transaction Begins here if push does'nt meet the require condition then
+        // it will reverse automatically without getting to the database
         DB::beginTransaction();
         try {
-            //code...
+            //code... similar to try and catch
              $blogs = Blog::where(id, $id)->update([
             'title' => $request->title,
             'slug' => $request->title,

@@ -65,7 +65,7 @@ export default {
   },
    created(){
     this.$store.commit('setUpdateUser', this.user);
-    // console.log(this.user)
+    console.log(this.user, 'New Development serve')
   }
 }
 </script>

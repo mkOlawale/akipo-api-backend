@@ -1,6 +1,5 @@
 <template>
     <div>
-        <!-- delete alert modal -->
         <Modal
         :value="getDeleteModalObj.showDeleteModal"
         :mask-closable="false"

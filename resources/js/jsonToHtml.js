@@ -47,8 +47,8 @@ export default {
            
 
         },
-        makeCode(obj) {
-        //     return `<section class="nws3_sec4">
+        // makeCode(obj) {
+        //     return `<section class="nws3_sec4 txt-c-pry">
         //     <div class="row justify-content-center">
         //         <div class="col-12 col-md-10 col-lg-8">
         
@@ -65,7 +65,7 @@ export default {
         //     </div>
         // </section>	`
 
-        },
+        // },
         makeList(obj) {
             if (obj.data.style === 'unordered') {
                 const list = obj.data.items.map(item => {
@@ -83,10 +83,6 @@ export default {
                             ${list.join('')}
                         </ul>`           
             }
-
-
-            
-           
         },
         makeQuote(obj) {
             return `<div class="spcl_line mar_b30">
@@ -141,3 +137,5 @@ export default {
 
     }
 }
+
+// Implementation of the new json inserted into the database

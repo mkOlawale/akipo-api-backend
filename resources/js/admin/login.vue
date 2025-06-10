@@ -29,9 +29,10 @@ export default {
         return {
             data : {
                 email : '', 
-                password: ''
+                password: '',
+                detect: null,
             }, 
-            isLogging: false, 
+            isLogging: false,  
         }
     }, 
 
@@ -59,11 +60,18 @@ export default {
             }
             this.isLogging = false
         }
+    },
+    created(){
+        console.log("say something");
     }
 }
 </script>
 <style scoped>
-    ._1adminOverveiw_table_recent {
+    /* ._1adminOverveiw_table_recent {
+        margin: 0 auto;
+        margin-top: 220px;
+    } */
+    ._1adminOverview_table_recent {
         margin: 0 auto;
         margin-top: 220px;
     }
@@ -73,5 +81,11 @@ export default {
     .login_header{
         text-align: center;
         margin-bottom: 25px;
+    }
+    .container{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin: 15% auto;
     }
 </style>

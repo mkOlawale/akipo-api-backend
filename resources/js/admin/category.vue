@@ -138,6 +138,7 @@ export default {
 			isDeleting: false,
 			idDeletingItem: false,
 			isEditing: false,
+			islodaded: null	
         }
     },
    methods:{

@@ -17,3 +17,5 @@ const mix = require('laravel-mix');
      'public/css/grid.min.css',
      'public/css/main.css',
  ], 'public/css/all.css');
+
+

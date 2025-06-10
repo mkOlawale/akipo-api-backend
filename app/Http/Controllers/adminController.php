@@ -26,6 +26,7 @@ class adminController extends Controller
 
             return view('welcome');
         }
+        // redirect here
         $user = Auth::user();
         if ($user->userType == 'User') {
             return redirect('/login');
@@ -52,7 +53,7 @@ class adminController extends Controller
     //     return view('notfound');
     //     }
     // }
-        public function logout(){
+     public function logout(){
         Auth::logout();
         return redirect('/login');
     }
@@ -141,7 +142,7 @@ class adminController extends Controller
         return;
     }
         public function getCategory()
-    {
+             {
         return category::orderBy('id', 'desc')->get();
     }
        public function createUser(Request $request){
@@ -161,8 +162,7 @@ class adminController extends Controller
         return $user;
     }
     public function getUser(){
-        return User::get(); 
-        // return User::where('role_id', '!=', 'User')->get();
+        return User::get();
     }
     public function editUser(Request $request){
         $this->validate($request, [
@@ -170,7 +170,6 @@ class adminController extends Controller
             'email' => "bail|required|email|unique:users,email,$request->id",
             'password' => 'min:6',
             'role_id' => 'required',
-            // 'role_id' => 'required',
         ]);
         $data = [
             'fullName' => $request->fullName,

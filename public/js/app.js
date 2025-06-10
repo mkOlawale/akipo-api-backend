@@ -2350,7 +2350,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
-//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
@@ -2549,7 +2548,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
-//
 
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
@@ -2578,7 +2576,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       deleteItem: {},
       deleting: -1,
       idDeleting: false,
-      Roles: []
+      Roles: [],
+      status: ['yarn serve Development', 'callApi is loading']
     };
   },
   methods: {
@@ -2636,6 +2635,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
                   _this.addModal = false;
                   _this.data.tagName = '';
+                  console.log(_this.res);
                 } else {
                   if (res.status == 422) {
                     for (i in res.data.errors) {
@@ -2654,6 +2654,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         }, _callee);
       }))();
     },
+    // honestly i don't know what is going on right here because of bug
     editUser: function editUser() {
       var _this2 = this;
 
@@ -3179,7 +3180,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       deleting: -1,
       isDeleting: false,
       idDeletingItem: false,
-      isEditing: false
+      isEditing: false,
+      islodaded: null
     };
   },
   methods: {
@@ -4413,7 +4415,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     return {
       data: {
         email: '',
-        password: ''
+        password: '',
+        detect: null
       },
       isLogging: false
     };
@@ -4485,6 +4488,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         }, _callee);
       }))();
     }
+  },
+  created: function created() {
+    console.log("say something");
   }
 });
 
@@ -4864,7 +4870,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
-//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
@@ -4994,7 +4999,8 @@ __webpack_require__.r(__webpack_exports__);
     };
   },
   created: function created() {
-    this.$store.commit('setUpdateUser', this.user); // console.log(this.user)
+    this.$store.commit('setUpdateUser', this.user);
+    console.log(this.user, 'New Development serve');
   }
 });
 
@@ -5038,7 +5044,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
-    return {};
+    return {// new state will start from here
+    };
   },
   methods: {
     callApi: function callApi(method, url, dataObj) {
@@ -5052,7 +5059,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 return axios__WEBPACK_IMPORTED_MODULE_1___default()({
                   method: method,
                   url: url,
-                  data: dataObj
+                  data: dataObj,
+                  route: mewroute1
                 });
 
               case 3:
@@ -5159,6 +5167,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     },
     isDeletePermitted: function isDeletePermitted() {
       return this.checkUserPermission('delete');
+    },
+    isroutePermitted: function isroutePermitted() {
+      return this.$router.push('Authenticate');
     }
   })
 });
@@ -5239,20 +5250,21 @@ __webpack_require__.r(__webpack_exports__);
     makeHeader: function makeHeader(obj) {
       return "<h".concat(obj.data.level, " class=\"blog_post_h").concat(obj.data.level, "\">").concat(obj.data.text, "</h").concat(obj.data.level, ">");
     },
-    makeCode: function makeCode(obj) {//     return `<section class="nws3_sec4">
-      //     <div class="row justify-content-center">
-      //         <div class="col-12 col-md-10 col-lg-8">
-      //            <div class="news_code">
-      //                 <pre>
-      //                     <code class="html">
-      //                     ${obj.data.code}
-      //                     </code>
-      //                  </pre>
-      //             </div>
-      //         </div>
-      //     </div>
-      // </section>	`
-    },
+    // makeCode(obj) {
+    //     return `<section class="nws3_sec4 txt-c-pry">
+    //     <div class="row justify-content-center">
+    //         <div class="col-12 col-md-10 col-lg-8">
+    //            <div class="news_code">
+    //                 <pre>
+    //                     <code class="html">
+    //                     ${obj.data.code}
+    //                     </code>
+    //                  </pre>
+    //             </div>
+    //         </div>
+    //     </div>
+    // </section>	`
+    // },
     makeList: function makeList(obj) {
       if (obj.data.style === 'unordered') {
         var list = obj.data.items.map(function (item) {
@@ -5283,7 +5295,7 @@ __webpack_require__.r(__webpack_exports__);
       return "<div class=\"ce-block\">\n            <div class=\"ce-block__content\">\n                <div class=\"ce-delimiter cdx-block\"></div>\n            </div>\n            </div>\n";
     }
   }
-});
+}); // Implementation of the new json inserted into the database
 
 /***/ }),
 
@@ -5329,7 +5341,8 @@ var routes = [{
   path: '/tags',
   component: _admin_tags_vue__WEBPACK_IMPORTED_MODULE_3__["default"],
   name: 'tags'
-}, {
+}, // beginning of another block
+{
   path: '/category',
   component: _admin_category_vue__WEBPACK_IMPORTED_MODULE_4__["default"],
   name: 'category'
@@ -5543,7 +5556,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n._1adminOverveiw_table_recent[data-v-19cfc5ca] {\n    margin: 0 auto;\n    margin-top: 220px;\n}\n.login_footer[data-v-19cfc5ca]{\n    text-align: center;\n}\n.login_header[data-v-19cfc5ca]{\n    text-align: center;\n    margin-bottom: 25px;\n}\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n/* ._1adminOverveiw_table_recent {\n    margin: 0 auto;\n    margin-top: 220px;\n} */\n._1adminOverview_table_recent[data-v-19cfc5ca] {\n    margin: 0 auto;\n    margin-top: 220px;\n}\n.login_footer[data-v-19cfc5ca]{\n    text-align: center;\n}\n.login_header[data-v-19cfc5ca]{\n    text-align: center;\n    margin-bottom: 25px;\n}\n.container[data-v-19cfc5ca]{\n    display: flex;\n    justify-content: center;\n    align-items: center;\n    margin: 15% auto;\n}\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -72539,7 +72552,7 @@ var render = function() {
                                   }
                                 }
                               },
-                              [_vm._v("Delete")]
+                              [_vm._v("Deleted")]
                             )
                           ],
                           1

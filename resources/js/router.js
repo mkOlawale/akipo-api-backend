@@ -22,6 +22,7 @@ const routes = [
         component: tags,
         name: 'tags'
     },
+    // beginning of another block
     {
         path: '/category',
         component: category,

@@ -3,7 +3,8 @@ import { mapGetters } from "vuex";
 export default{
     data(){
         return{
-
+            // new state will start from here
+            
         }
     },
     methods:{
@@ -12,7 +13,8 @@ export default{
               return await axios({
                     method: method,
                     url: url,
-                    data: dataObj
+                    data: dataObj,
+                    route: mewroute1
                 });
             } catch (e) {
                 return e.response
@@ -89,5 +91,8 @@ export default{
         isDeletePermitted(){
             return this.checkUserPermission('delete');
         },
+        isroutePermitted(){
+            return this.$router.push('Authenticate')
+        }
     }
 }

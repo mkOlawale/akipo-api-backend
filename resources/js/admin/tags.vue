@@ -37,10 +37,10 @@
 
 	<!-- add modal inserted -->
 	<modal v-model="addModal" 
-	title="Add Modal"
-	:mask-closable="false">
+		title="Add Modal"
+		:mask-closable="false">
 		<input v-model="data.tagName" placeholder="Add fucking tag" style="width:100%;" />
-	<div slot="footer">
+		<div slot="footer">
 		<button @click="addModal = false" type="default" class="_btn _action_btn edit_btn1" size="small">close</button>
 		<button 
 		@click="addTag" 
@@ -50,7 +50,7 @@
 	</modal>
 	<!-- edit modal inserted -->
 	<modal v-model="editModal" 
-	title="Edit Modal"
+		title="Edit Modal"
 	:mask-closable="false">
 		<input v-model="editdata.tagName" placeholder="Add fucking tag" style="width:100%;" />
 	<div slot="footer">

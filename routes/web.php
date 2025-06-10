@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\globalcontroller;
+use App\Http\Controllers\testingController;
 use App\Http\Middleware\AdminCheck;
 
 /*
@@ -18,6 +19,7 @@ use App\Http\Middleware\AdminCheck;
 
 Route::post('app/create_tags', [globalcontroller::class, 'addtags']);
 Route::post('app/edit_tags', [globalcontroller::class, 'edittags']);
+Route::post('app/delete_tags', [globalcontroller::class, 'deletetags']);
 Route::get('app/get_tags', [globalcontroller::class, 'gettags']);
 
 
@@ -49,3 +51,4 @@ Route::get('/logout', [globalcontroller::class, 'logout']);
 // Route::any('{slug}', function(){
 //     return view('welcome');
 // });
+Route::get('/payment_page', [testingController::class, 'test'])->name('Payment_request');
